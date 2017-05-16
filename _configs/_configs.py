@@ -19,3 +19,4 @@ class Configs:
         self.departure_city = self.conf.get("Search_data", "departure_city")
         self.s_url = self.conf.get("Url", "s_url")
         self.pattern_form = self.conf.get("Xpath_field", "pattern_form")
+        
