@@ -27,7 +27,7 @@ class Test_form(Basic_settings, unittest.TestCase):
         time.sleep(3)
         main_search._click("package_1")
         time.sleep(2)
-        main_search.switch_fr        
+        main_search.switch_fr
         main_search.cycle_for("Buyer", self.pattern_form, "clientForm")
         main_search.cycle_for("Tourist1", self.pattern_form, "touristForm0")
         main_search.cycle_for("Tourist1", self.pattern_form, "touristForm1")
@@ -36,6 +36,7 @@ class Test_form(Basic_settings, unittest.TestCase):
         time.sleep(10)
         url = self.driver.current_url
         print(url)
+
 
 
 if __name__ == '__main__':
