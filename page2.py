@@ -20,6 +20,7 @@ class MainSearch(BasePage):
         driver = self.driver
         driver.get(self.base_url)
         driver.maximize_window()
+        self.cycle_for()
 
 
     def lite_search(self, s_url, section, pattern):
