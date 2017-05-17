@@ -16,18 +16,18 @@ class BasePage(object):
 class MainSearch(BasePage):
     switch_fr = BaseSwitch()
 
-    def lite_search(self, s_url, section):
+    def search(self, section):
         driver = self.driver
-        departure_city = self.conf.get(section, "departure_city")
-        country = self.conf.get(section, "country")
-        date_depart = self.conf.get(section, "date_depart")
-        nights = self.conf.get(section, "nights")
-        adult = self.conf.get(section, "adult")
-        kids = self.conf.get(section, "kids")
+        driver.get(self.base_url)
+        driver.maximize_window()
 
-        data = "-".join([departure_city, "to", country, "departure", date_depart, "for", nights, "nights", adult, "adults", kids, "kids-1..5-stars"])
-        _url = "/".join([self.base_url, s_url, data])
-        driver.get(_url)
+
+    def lite_search(self, s_url, section, pattern):
+        driver = self.driver
+        values = [value for value in self.conf[section].values()]
+        url = pattern.format(self.base_url, s_url, *values)
+        driver.get(url)
+        driver.maximize_window()
 
     def _click(self, name_button, section="Xpath_buttton"):
         xpath = self.conf.get(section, name_button)
@@ -35,7 +35,7 @@ class MainSearch(BasePage):
         s.click(xpath)
 
     def data_entry(self, section, option, name_field, section_field="Xpath_field"):
-        value = self.conf.get(section, option)        
+        value = self.conf.get(section, option)
         locator = self.conf.get(section_field, name_field)
         s = SearchElement(self.driver)
         s.set(locator, value)
