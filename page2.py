@@ -21,7 +21,8 @@ class MainSearch(BasePage):
         driver.get(self.base_url)
         driver.maximize_window()
         self.cycle_for()
-
+        {}
+        m[k]=x
 
     def lite_search(self, s_url, section, pattern):
         driver = self.driver

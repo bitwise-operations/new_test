@@ -16,4 +16,5 @@ class Configs:
         self.s_url = self.conf.get("Url", "s_url")
         self.pattern_form = self.conf.get("Xpath_field", "pattern_form")
         self.pattern_search = self.conf.get("Url", "pattern_search")
+        self.pattern_cigarette = self.conf.get("Xpath_field", "pattern_cigarette")
         
