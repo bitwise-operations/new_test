@@ -15,8 +15,8 @@ class Test_form(Basic_settings, unittest.TestCase):
 
     def test_form(self):
         main_search = page2.MainSearch(self.driver, self.conf, self.base_url)
-        # main_search.lite_search(self.s_url, "Search_data_lite", self.pattern_search)
-        main_search.search("Search_data")
+        main_search.lite_search(self.s_url, "Search_data_lite", self.pattern_search)
+        # main_search.search("Search_data")
         
         main_search.search_element("Xpath_search", "get_results")
         time.sleep(1)

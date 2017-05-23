@@ -17,12 +17,44 @@ class MainSearch(BasePage):
     switch_fr = BaseSwitch()
 
     def search(self, section):
-        driver = self.driver
-        driver.get(self.base_url)
-        driver.maximize_window()
-        self.cycle_for()
-        {}
-        m[k]=x
+        # driver = self.driver
+        # driver.get(self.base_url)
+        # driver.maximize_window()
+        # self.cycle_for()
+        # {}
+        # m[k]=x
+        a = self.data_search(section)
+
+        try:
+            a['country']
+        except KeyError:
+            pass
+        try:
+            a['date_depart']
+        except KeyError:
+            pass
+        try:
+            a['nights']
+        except KeyError:
+            pass
+        try:
+            a['adult']
+        except KeyError:
+            pass
+        try:
+            a['kids']
+        except KeyError:
+            pass
+            
+        получаем из конфига список значений 
+        затем проверяем какие из параметров по умолчанию нужно заменить
+
+    def data_search(self, section):
+        key_lst = [option for option in self.conf[section]]
+        value_lst = [value for value in self.conf[section].values()]
+        my_dict = dict(zip(key_lst, value_lst))
+        return my_dict
+
 
     def lite_search(self, s_url, section, pattern):
         driver = self.driver
