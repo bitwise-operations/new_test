@@ -1,0 +1,20 @@
+{
+  // Required
+  "manifest_version": 1,
+  "name": "My Extension",
+  "version": "1.0",
+
+  // Recommended
+  "default_locale": "en",
+  "description": "AutoFill forms tourists",
+
+  "options_page": "options.html", // Страница настроек
+
+  "optional_permissions": ["tabs"],
+  "options_page": "options.html",
+
+  "permissions": [
+    "tabs",
+    "https://level.travel/*"
+  ]
+}

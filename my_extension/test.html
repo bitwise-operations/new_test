@@ -1,0 +1,11 @@
+<html>
+
+<script type="text/javascript">
+    var fs = require('fs'),
+    ini = require('ini');
+    
+    var config = ini.parse(fs.readFileSync('./config.ini', 'utf8'));
+    console.dir(Object.keys(config));
+</script>
+
+</html>
