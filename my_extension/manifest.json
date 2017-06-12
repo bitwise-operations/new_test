@@ -1,20 +1,28 @@
 {
   // Required
-  "manifest_version": 1,
+  "manifest_version": 2,
   "name": "My Extension",
   "version": "1.0",
-
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  
   // Recommended
-  "default_locale": "en",
   "description": "AutoFill forms tourists",
 
-  "options_page": "options.html", // Страница настроек
+  "browser_action": { // Элементы браузера
+    "default_title": "AutoFill", // Название кнопки
+    "default_icon": "images/icon.png", // Иконка для кнопки
+    "default_popup": "popup.html" // Всплывающее окно
+  },
 
-  "optional_permissions": ["tabs"],
-  "options_page": "options.html",
+  "permissions": ["https://level.travel/packages/*", "tabs", "alarms", "cookies", "history", "storage", "activeTab", "geolocation", "pageCapture", "notifications", "unlimitedStorage"],
 
-  "permissions": [
-    "tabs",
-    "https://level.travel/*"
-  ]
+  "content_scripts":[
+        {
+            "matches": [
+                "*://*/*"
+            ],
+            "js": ["popup.js"]
+        }
+    ]
+
 }
