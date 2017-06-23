@@ -49,6 +49,8 @@ class MainSearch(BasePage):
         получаем из конфига список значений 
         затем проверяем какие из параметров по умолчанию нужно заменить
 
+        len(driver.find_elements_by_css_selector(".tourists_list > div"))
+        
     def data_search(self, section):
         key_lst = [option for option in self.conf[section]]
         value_lst = [value for value in self.conf[section].values()]
