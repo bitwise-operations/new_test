@@ -45,18 +45,25 @@ class MainSearch(BasePage):
             a['kids']
         except KeyError:
             pass
+        try:
+            a['departure']
+        except KeyError:
+            pass
+
             
         получаем из конфига список значений 
         затем проверяем какие из параметров по умолчанию нужно заменить
 
-        len(driver.find_elements_by_css_selector(".tourists_list > div"))
-        
+
     def data_search(self, section):
         key_lst = [option for option in self.conf[section]]
         value_lst = [value for value in self.conf[section].values()]
         my_dict = dict(zip(key_lst, value_lst))
+
         return my_dict
 
+    def filler_form(self):
+        len(driver.find_elements_by_css_selector(".tourists_list > div"))
 
     def lite_search(self, s_url, section, pattern):
         driver = self.driver
