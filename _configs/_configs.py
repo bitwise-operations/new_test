@@ -17,4 +17,4 @@ class Configs:
         self.pattern_form = self.conf.get("Xpath_field", "pattern_form")
         self.pattern_search = self.conf.get("Url", "pattern_search")
         self.pattern_cigarette = self.conf.get("Xpath_field", "pattern_cigarette")
-        
+        self.pattern_search_form = self.conf.get("Xpath_field", "pattern_search_form")

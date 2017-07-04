@@ -13,4 +13,10 @@ class Test_search(Basic_settings, unittest.TestCase):
         unittest.TestCase.__init__(self, *args, **kwargs) 
 
     def test_seach(self):
+        main_search = page2.MainSearch(self.driver, self.conf, self.base_url)
+        main_search.search("S", self.pattern_search_form)
+        main_search._click("search")
         
+
+if __name__ == '__main__':
+    unittest.main()

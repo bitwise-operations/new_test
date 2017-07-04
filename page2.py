@@ -16,17 +16,18 @@ class BasePage(object):
 class MainSearch(BasePage):
     switch_fr = BaseSwitch()
 
-    def search(self, section):
-        # driver = self.driver
-        # driver.get(self.base_url)
-        # driver.maximize_window()
+    def search(self, section, location):
+        driver = self.driver
+        driver.get(self.base_url)
+        driver.maximize_window()
         # self.cycle_for()
         # {}
         # m[k]=x
         a = self.data_search(section)
-
+        s = SearchElement(self.driver)
         try:
             a['country']
+            s.set(location.format("1"), a['country'])
         except KeyError:
             pass
         try:
@@ -74,6 +75,7 @@ class MainSearch(BasePage):
 
     def _click(self, name_button, section="Xpath_buttton"):
         xpath = self.conf.get(section, name_button)
+        print(xpath)
         s = SearchElement(self.driver)
         s.click(xpath)
 
