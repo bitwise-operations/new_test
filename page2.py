@@ -1,6 +1,7 @@
 from element import BaseSwitch
 from element import SearchElement
 import time
+import re
 
 
 class Switch(BaseSwitch):
@@ -27,15 +28,25 @@ class MainSearch(BasePage):
         s = SearchElement(self.driver)
         try:
             a['country']
-            s.set(location.format("1"), a['country'])
+            s.set(location.format("1", "/input"), a['country'])
         except KeyError:
             pass
         try:
             a['date_depart']
+            info = s.get(location.format("2", "//span"))
+            value = int(re.findall(r'[0-9]{1,2}', info.text)[0])
+            
+            # s.set(location.format("2"))
         except KeyError:
             pass
         try:
             a['nights']
+            info = s.get(location.format("3", "//span"))
+            value = int(re.findall(r'[0-9]{1,2}', info.text)[0])
+            s.click(location.format("3", "/div"))
+            if value > int(a['nights']):
+
+
         except KeyError:
             pass
         try:
@@ -75,7 +86,6 @@ class MainSearch(BasePage):
 
     def _click(self, name_button, section="Xpath_buttton"):
         xpath = self.conf.get(section, name_button)
-        print(xpath)
         s = SearchElement(self.driver)
         s.click(xpath)
 

@@ -26,7 +26,6 @@ class SearchElement(object):
 
     def click(self, locator):
         driver = self.driver
-        print(driver.find_element_by_xpath(locator))
         WebDriverWait(driver, 100).until(
             lambda driver: driver.find_element_by_xpath(locator))
         driver.find_element_by_xpath(locator).click()
