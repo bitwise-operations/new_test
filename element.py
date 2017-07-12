@@ -22,7 +22,7 @@ class SearchElement(object):
         driver = self.driver
         WebDriverWait(driver, 100).until(
             lambda driver: driver.find_element_by_xpath(locator))
-        driver.find_element_by_xpath(locator)
+        return driver.find_element_by_xpath(locator)
 
     def click(self, locator):
         driver = self.driver

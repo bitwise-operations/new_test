@@ -26,18 +26,18 @@ class MainSearch(BasePage):
         # m[k]=x
         a = self.data_search(section)
         s = SearchElement(self.driver)
-        try:
-            a['country']
-            s.set(location.format("1", "/input"), a['country'])
-        except KeyError:
-            pass
+        # try:
+        #     a['country']
+        #     s.set(location.format("1", "/input"), a['country'])
+        # except KeyError:
+        #     pass
         try:
             a['date_depart']
             info = s.get(location.format("2", "/div/span"))
             print(info)
-            date_def = re.findall(r'[0-9]{1,2}', info)[0]
+            date_def = re.findall(r'[0-9]{1,2}', info.text)
             
-            value = int(date_def)
+            value = int(date_def[0])
             
             # s.set(location.format("2"))
         except KeyError:
