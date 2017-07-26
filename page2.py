@@ -34,7 +34,6 @@ class MainSearch(BasePage):
         try:
             a['date_depart']
             info = s.get(location.format("2", "/div/span"))
-            print(info)
             date_def = re.findall(r'[0-9]{1,2}', info.text)            
             value = int(date_def[0])
             
@@ -58,17 +57,33 @@ class MainSearch(BasePage):
                 pass
         except KeyError:
             pass
-
         try:
             a['adult']
+            info = s.get(location.format("4", "/div"))
+            value = int(re.findall(r'[0-9]{1}', info.text)[0])
+            s.click(location.format("4", "/div"))
+            vol_fill = int(a['adult'])
+            i = 0
+            if value > vol_fill:
+                for i in range(value - vol_fill):
+                    s.click(location.format("4", "//div[@class='subtract']"))
+            elif value < vol_fill:
+                for i in range(vol_fill - value):
+                    s.click(location.format("4", "//div[@class='add']"))
+            else:
+                pass
         except KeyError:
             pass
         try:
             a['kids']
+            s.click(location.format("4", "/div"))
+            s.click(location.format("4", "/span(text()='Добавить ребенка')"))
         except KeyError:
             pass
         try:
             a['departure']
+            s.click(location.format("5", "/input"))
+            s.set(location.format("5", "/input"), a['departure'])
         except KeyError:
             pass
 

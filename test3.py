@@ -16,6 +16,7 @@ class Test_search(Basic_settings, unittest.TestCase):
         main_search = page2.MainSearch(self.driver, self.conf, self.base_url)
         main_search.search("S", self.pattern_search_form)
         main_search._click("search")
+        time.sleep(3)
         
 
 if __name__ == '__main__':
