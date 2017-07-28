@@ -7,12 +7,14 @@ import re
 class Switch(BaseSwitch):
     pass
 
+
 class BasePage(object):
 
     def __init__(self, driver, conf=None, base_url=None):
         self.driver = driver
         self.conf = conf
         self.base_url = base_url
+
 
 class MainSearch(BasePage):
     switch_fr = BaseSwitch()
@@ -34,9 +36,9 @@ class MainSearch(BasePage):
         try:
             a['date_depart']
             info = s.get(location.format("2", "/div/span"))
-            date_def = re.findall(r'[0-9]{1,2}', info.text)            
+            date_def = re.findall(r'[0-9]{1,2}', info.text)
             value = int(date_def[0])
-            
+
             # s.set(location.format("2"))
         except KeyError:
             pass
@@ -77,7 +79,11 @@ class MainSearch(BasePage):
         try:
             a['kids']
             s.click(location.format("4", "/div"))
-            s.click(location.format("4", "/span(text()='Добавить ребенка')"))
+            s.click(location.format("4", "//select"))
+            kids = a['kids'].split(',')
+            i = 0
+            for i in range(len(kids)):
+                s.click(location.format("4", "//select/option[@value='" + kids[i] + "']"))
         except KeyError:
             pass
         try:
@@ -87,10 +93,8 @@ class MainSearch(BasePage):
         except KeyError:
             pass
 
-        
-        # получаем из конфига список значений 
+        # получаем из конфига список значений
         # затем проверяем какие из параметров по умолчанию нужно заменить
-
 
     def data_search(self, section):
         key_lst = [option for option in self.conf[section]]
@@ -114,7 +118,8 @@ class MainSearch(BasePage):
         s = SearchElement(self.driver)
         s.click(xpath)
 
-    def data_entry(self, section, option, name_field, section_field="Xpath_field"):
+    def data_entry(self, section, option, name_field,
+                   section_field="Xpath_field"):
         value = self.conf.get(section, option)
         locator = self.conf.get(section_field, name_field)
         s = SearchElement(self.driver)
