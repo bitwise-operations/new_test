@@ -36,8 +36,35 @@ class MainSearch(BasePage):
         try:
             a['date_depart']
             info = s.get(location.format("2", "/div/span"))
-            date_def = re.findall(r'[0-9]{1,2}', info.text)
-            value = int(date_def[0])
+            # date_def = re.findall(r'[0-9]{1,2}', info.text)
+            # value = int(date_def[0])
+            s.click(location.format("2", "/div/span"))
+            month = re.findall(r'[а-я]+', info.text)
+            need_month = re.findall(r'[а-я]+', a['date_depart'])
+            if month in need_month:
+                pass
+            else:
+                parser = {
+                    'января': 'январь',
+                    'февраля': 'февраль',
+                    'марта': 'март',
+                    'апреля': 'апрель',
+                    'мая': 'май',
+                    'июня': 'июнь',
+                    'июля': 'июль',
+                    'августа': 'август',
+                    'сентября': 'сентябрь',
+                    'октября': 'октябрь',
+                    'ноября': 'ноябрь',
+                    'декабря': 'декабрь',
+                }
+                while s.get(location.format("2", "//div[@class='calendar-label']")).text:
+
+
+
+            date = re.findall(r'[0-9]{1,2}', info.text)
+            need_date = re.findall(r'[0-9]{1,2}', a['date_depart'])
+
 
             # s.set(location.format("2"))
         except KeyError:
