@@ -45,21 +45,25 @@ class MainSearch(BasePage):
                 pass
             else:
                 parser = {
-                    'января': 'январь',
-                    'февраля': 'февраль',
-                    'марта': 'март',
-                    'апреля': 'апрель',
-                    'мая': 'май',
-                    'июня': 'июнь',
-                    'июля': 'июль',
-                    'августа': 'август',
-                    'сентября': 'сентябрь',
-                    'октября': 'октябрь',
-                    'ноября': 'ноябрь',
-                    'декабря': 'декабрь',
+                    'января': 'Январь',
+                    'февраля': 'Февраль',
+                    'марта': 'Март',
+                    'апреля': 'Апрель',
+                    'мая': 'Май',
+                    'июня': 'Июнь',
+                    'июля': 'Июль',
+                    'августа': 'Август',
+                    'сентября': 'Сентябрь',
+                    'октября': 'Октябрь',
+                    'ноября': 'Ноябрь',
+                    'декабря': 'Декабрь',
                 }
-                while s.get(location.format("2", "//div[@class='calendar-label']")).text:
-
+                print(parser[need_month[0]])
+                while re.findall(r'[А-яа-я]+', s.get(location.format("2", "//div[@class='calendar-label']")).text)[0] != parser[need_month[0]]:
+                    s.click(location.format("2", "//div[@class='calendar-next-month']"))
+                    print(re.findall(r'[А-яа-я]+', s.get(location.format("2", "//div[@class='calendar-label']")).text)[0])
+            
+            time.sleep(3)
 
 
             date = re.findall(r'[0-9]{1,2}', info.text)
