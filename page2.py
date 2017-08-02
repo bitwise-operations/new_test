@@ -36,8 +36,6 @@ class MainSearch(BasePage):
         try:
             a['date_depart']
             info = s.get(location.format("2", "/div/span"))
-            # date_def = re.findall(r'[0-9]{1,2}', info.text)
-            # value = int(date_def[0])
             s.click(location.format("2", "/div/span"))
             month = re.findall(r'[а-я]+', info.text)
             need_month = re.findall(r'[а-я]+', a['date_depart'])
@@ -62,15 +60,8 @@ class MainSearch(BasePage):
                 while re.findall(r'[А-яа-я]+', s.get(location.format("2", "//div[@class='calendar-label']")).text)[0] != parser[need_month[0]]:
                     s.click(location.format("2", "//div[@class='calendar-next-month']"))
                     print(re.findall(r'[А-яа-я]+', s.get(location.format("2", "//div[@class='calendar-label']")).text)[0])
-            
-            time.sleep(3)
-
-
-            date = re.findall(r'[0-9]{1,2}', info.text)
             need_date = re.findall(r'[0-9]{1,2}', a['date_depart'])
-
-
-            # s.set(location.format("2"))
+            s.click(location.format("2","//div[@class='calendar-month']//tbody//td[@class != 'calendar-other-month' and text()='" + need_date[0] + "']"))
         except KeyError:
             pass
         try:
@@ -123,9 +114,6 @@ class MainSearch(BasePage):
             s.set(location.format("5", "/input"), a['departure'])
         except KeyError:
             pass
-
-        # получаем из конфига список значений
-        # затем проверяем какие из параметров по умолчанию нужно заменить
 
     def data_search(self, section):
         key_lst = [option for option in self.conf[section]]
