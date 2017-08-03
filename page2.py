@@ -23,9 +23,6 @@ class MainSearch(BasePage):
         driver = self.driver
         driver.get(self.base_url)
         driver.maximize_window()
-        # self.cycle_for()
-        # {}
-        # m[k]=x
         a = self.data_search(section)
         s = SearchElement(self.driver)
         try:
@@ -55,11 +52,9 @@ class MainSearch(BasePage):
                     'октября': 'Октябрь',
                     'ноября': 'Ноябрь',
                     'декабря': 'Декабрь',
-                }
-                print(parser[need_month[0]])
+                }                
                 while re.findall(r'[А-яа-я]+', s.get(location.format("2", "//div[@class='calendar-label']")).text)[0] != parser[need_month[0]]:
-                    s.click(location.format("2", "//div[@class='calendar-next-month']"))
-                    print(re.findall(r'[А-яа-я]+', s.get(location.format("2", "//div[@class='calendar-label']")).text)[0])
+                    s.click(location.format("2", "//div[@class='calendar-next-month']"))                    
             need_date = re.findall(r'[0-9]{1,2}', a['date_depart'])
             s.click(location.format("2","//div[@class='calendar-month']//tbody//td[@class != 'calendar-other-month' and text()='" + need_date[0] + "']"))
         except KeyError:
@@ -114,6 +109,11 @@ class MainSearch(BasePage):
             s.set(location.format("5", "/input"), a['departure'])
         except KeyError:
             pass
+
+    def current(self):
+        driver = self.driver
+
+        return driver.current_url
 
     def data_search(self, section):
         key_lst = [option for option in self.conf[section]]

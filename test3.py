@@ -17,6 +17,10 @@ class Test_search(Basic_settings, unittest.TestCase):
         main_search.search("S", self.pattern_search_form)
         main_search._click("search")
         time.sleep(3)
+        get_url = main_search.current()
+        assert "search" in get_url
+
+    def test_form(self):
         
 
 if __name__ == '__main__':
