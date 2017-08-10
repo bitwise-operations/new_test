@@ -20,8 +20,14 @@ class Test_search(Basic_settings, unittest.TestCase):
         get_url = main_search.current()
         assert "search" in get_url
 
-    def test_form(self):
+    # def test_form(self):
+    #     main_search = page2.MainSearch(self.driver, self.conf, self.base_url)
+    #     main_search.search("S", self.pattern_search_form)
+    #     main_search._click("search")
         
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
